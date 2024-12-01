@@ -18,7 +18,6 @@ function CalendarHeatmap() {
     "December",
   ];
 
-  // Generate and store all data at once to maintain consistency
   const allMonthsData = months.map((_, monthIndex) => {
     const daysInMonth = new Date(2022, monthIndex + 1, 0).getDate();
     return Array(daysInMonth)
@@ -31,10 +30,9 @@ function CalendarHeatmap() {
   });
 
   const handleDayHover = (count, monthIndex, dayIndex) => {
-    const threshold = 10; // Adjust this value to control how close the counts need to be
+    const threshold = 10;
     const newGlowingDays = new Set();
 
-    // Find all days with similar counts across all months
     allMonthsData.forEach((month, mIndex) => {
       month.forEach((day, dIndex) => {
         if (Math.abs(day.count - count) <= threshold) {
